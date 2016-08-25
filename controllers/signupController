@@ -1,0 +1,17 @@
+var models = require('../models');
+
+module.exports.show = function(req, res) {
+    res.render('signup')
+}
+
+module.exports.signup = function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var email=req.body.email;
+
+    models.user.create({username,password,email}).then(function() {
+        res.redirect('/')
+    }).catch(function(error) {
+        res.redirect('/signup')
+    })
+}
