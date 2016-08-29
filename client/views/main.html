@@ -1,0 +1,59 @@
+<div class="todoLists container">
+    <div class="todoList " ng-repeat="todo_list in todoController.todo_lists">
+        <div class="todoList-header">
+            <span class="fa fa-calendar" style=""></span>
+            <span class="title">{{todo_list.title}}</span>
+            <div class="control">
+                <ul>
+                    <li>
+                        <a ng-click="todoController.editTodoList(todo_list)"><span class="fa fa-pencil"></span></a>
+                    </li>
+                    <li>
+                        <a ng-click="todoController.removeTodoList(todo_list)"><span class="fa fa-trash"></span></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="todoList-form">
+            <form class="form-addTodo" name="addTodo">
+                <span class="fa fa-plus"></span>
+                <input type="text" name="todoContent" ng-model="todoController.todoItem[todo_list.id]"
+                       title="Todo content"
+                       placeholder="Start typing here to create a task">
+                <input type="submit" value="Add task" ng-click="todoController.addTask(todo_list.id)">
+            </form>
+        </div>
+        <div class="todoList-body">
+            <div class="item" ng-repeat="todo_item in todo_list.todo_items">
+                <input type="checkbox" ng-model="todo_item.compiled_at"
+                       ng-click="todoController.setComplitedTask(todo_list.id,todo_item)">
+                <div class="todo_content" ng-class="{todo_complited:todo_item.compiled_at}">
+                    <div class="text">{{todo_item.content}}</div>
+                </div>
+                <div class="control">
+                    <ul>
+                        <li>
+                            <a ng-class="{'deadline_green':!todo_item.isDeadlineExpired,'deadline_red':todo_item.isDeadlineExpired}"
+                               class="fa fa-calendar"
+                               tooltip-placement="right" uib-tooltip="{{ todo_item.deadline_text}}"
+                            ></a></li>
+                        <li class="v-line"></li>
+                        <li><a class="fa"
+                               ng-class="{'fa-star-o':(todo_item.priority == '0') ? true : false,'fa-star':(todo_item.priority == '0') ? false : true}"
+                               ng-click="todoController.setPriorityTask(todo_list.id, todo_item)"></a></li>
+                        <li class="v-line"></li>
+                        <li><a ng-click="todoController.editTodoItem(todo_item)" class="fa fa-pencil"></a></li>
+                        <li class="v-line"></li>
+                        <li><a class="fa fa-trash" ng-click="todoController.deleteTask(todo_list.id, todo_item)"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+    <button class="new-todoLists" ng-click="todoController.addNewTodoList()"><span class="fa fa-plus"></span> Add TODO
+        List
+    </button>
+</div>
