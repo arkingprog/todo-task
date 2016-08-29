@@ -1,0 +1,17 @@
+<div class="modal-content">
+    <div class="forms">
+        <form>
+            <div class="modal-body">
+            <div class="form-group">
+                <label>Title</label><br>
+                <input ng-model="addTodoListController.titleTodoList" value="" style="width: 100%"
+                          required="required" minlength="3" type="text" aria-multiline="true"></input>
+            </div>
+                </div>
+            <div class="modal-footer">
+               <button name="button" type="submit" class="btn btn-default" ng-click="addTodoListController.sendTodoList()">Create Todo list</button>
+            </div>
+        </form>
+    </div>
+</div>
+

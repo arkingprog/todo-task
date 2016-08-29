@@ -13,8 +13,10 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "express-session": "~1.0.0",
+    "jquery": "^3.1.0",
     "jsonwebtoken": "^7.1.9",
     "less-middleware": "1.0.x",
+    "lodash": "latest",
     "method-override": "~1.0.0",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
@@ -23,7 +25,6 @@
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.24.1",
-    "serve-favicon": "~2.3.0",
-    "lodash": "latest"
+    "serve-favicon": "~2.3.0"
   }
 }

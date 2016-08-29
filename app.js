@@ -14,7 +14,7 @@ var pg = require('pg');
 var session = require('express-session');
 var models = require('./models');
 var config = require('./config/config');
-var jwt = require('jsonwebtoken');
+var methodOverride = require('method-override');
 
 var app = express();
 
@@ -27,10 +27,10 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-    models.user.find({where:{id:user.id}}).then(function (user) {
+    models.user.find({where: {id: user.id}}).then(function (user) {
         done(null, user);
     }).catch(function (err) {
-        done(err,null);
+        done(err, null);
     });
 });
 
@@ -42,8 +42,8 @@ passport.use(new LocalStrategy({
 
         User.find({where: {email: email}}).then(function (user) {
 
-            passwd=user ? user.password : '';
-            isMatch=models.user.validPassword(password,passwd,done,user);
+            passwd = user ? user.password : '';
+            isMatch = models.user.validPassword(password, passwd, done, user);
             // if (!user) {
             //     console.log('Incorrect email address.');
             //     return done(null, false, {message: 'Incorrect email address.'});
@@ -66,19 +66,21 @@ passport.use(new LocalStrategy({
 //  });
 passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
-    passReqToCallback : true
-}, function (req,email, password, done) {
-        // console.log(req.body);
-        models.user.findOne({where:{
-            email:email
-        }}).then(function (user) {
-            if(user) return done(null,false);
-            if(!user) {
-                models.user.create(req.body).then(function (res) {
-                    console.log(res.dataValues);
-                });
-            }
-        })
+    passReqToCallback: true
+}, function (req, email, password, done) {
+    // console.log(req.body);
+    models.user.findOne({
+        where: {
+            email: email
+        }
+    }).then(function (user) {
+        if (user) return done(null, false);
+        if (!user) {
+            models.user.create(req.body).then(function (res) {
+                console.log(res.dataValues);
+            });
+        }
+    })
 }));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -86,6 +88,7 @@ app.use(logger('dev'));
 app.set('superSecret', config.secret);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'client')));
 app.use(express.static(path.join(__dirname, 'client')));

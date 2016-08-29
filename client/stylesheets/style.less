@@ -1,8 +1,234 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url("../images/bg.jpg");
+  color: #999999;
 }
 
-a {
-  color: #00B7FF;
+.todo_complited {
+  text-decoration: line-through;
+}
+
+.todoLists {
+  width: 60%;
+  min-width: 750px;
+  text-align: center;
+  .todoList {
+    margin: 20px 0;
+    &-header {
+      color: #3e4e6c;
+      text-align: initial;
+      height: 50px;
+      background-color: #428bca;
+      border-radius: 1px;
+      font-size: 22px;
+      span.fa {
+        margin: 0 10px;
+        font-size: 22px;
+      }
+      .title {
+        line-height: 50px;
+        color: #fff;
+      }
+      .control {
+        visibility: hidden;
+        width: 100px;
+        float: right;
+        height: 25px;
+        line-height: 50px;
+        ul {
+          margin: 0;
+          padding: 0 10px;
+          display: flex;
+          justify-content: space-around;
+        }
+        li {
+          display: inline;
+          a {
+            text-decoration: none;
+            color: #bdbdbd;
+
+          }
+          a:hover {
+            cursor: pointer;
+            color: #e5e5e5;
+
+          }
+
+        }
+        .v-line {
+          border-right: 1px solid #e7ebea;
+        }
+
+      }
+      &:hover {
+        .control {
+          visibility: visible;
+        }
+      }
+    }
+    &-form {
+      background-color: #ddd;
+      height: 50px;
+      width: 100%;
+      .fa {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        font-size: 20px;
+        color: #599374;
+        margin: 0 6px;
+        vertical-align: middle;
+      }
+      .form-addTodo {
+        display: inline-flex;
+        align-items: center;
+        height: 50px;
+        width: 100%;
+        input {
+          height: 40px;
+        }
+        input[type=text] {
+          width: 100%;
+          font-size: 20px;
+          text-indent: 10px;
+        }
+        input[type=submit] {
+          width: 200px;
+          background-color: #599374;
+          color: #fff;
+          font-size: 18px;
+          margin-right: 10px;
+          border: 0;
+          border-radius: 0 5px 5px 0;
+        }
+      }
+    }
+    &-body {
+      text-align: left;
+      border-radius: 0 0 10px 10px;
+      background-color: #fff;
+      .item {
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+
+        .todo_content {
+          width: 100%;
+          border-right: 1px solid #e7ebea;
+          border-left: 1px solid #e7ebea;
+          min-height: 50px;
+          display: flex;
+
+          .text {
+            align-self: center;
+            margin-left: 10px;
+
+          }
+        }
+        input[type=checkbox] {
+          width: 20px;
+          height: 20px;
+          margin: 0 7px;
+        }
+        .control {
+          visibility: hidden;
+          width: 200px;
+          margin-right: 10px;
+          .deadline_green {
+            color: green;
+            &:hover {
+              color: green;
+            }
+          }
+          .deadline_red {
+            color: #aa0000;
+            &:hover {
+              color: #aa0000;
+            }
+
+          }
+          ul {
+            margin: 0;
+            padding: 0 10px;
+            display: flex;
+            justify-content: space-around;
+          }
+          li {
+            display: inline;
+            a {
+              text-decoration: none;
+              color: #999999;
+            }
+            a:hover {
+              color: #555;
+              cursor: pointer;
+            }
+
+          }
+          .v-line {
+            border-right: 1px solid #e7ebea;
+          }
+          //li:not(:last-child){
+          //  border-right: 1px solid black;
+          //  padding-right: 15px;
+          //}
+        }
+
+      }
+      .item:not(:last-child) {
+        border-bottom: 1px solid #e7ebea;
+      }
+      .item:hover {
+        background-color: #fcfed5;
+        .control {
+          visibility: visible;
+        }
+      }
+      .item:last-child:hover {
+        background-color: #fcfed5;
+        border-radius: 0 0 10px 10px;
+
+      }
+    }
+  }
+  .new-todoLists {
+    margin: 20px 0;
+    font-size: 18px;
+    width: 200px;
+    height: 50px;
+    background-color: #428bca;
+    border: none;
+    color: #fff;
+  }
+}
+
+.login-form ,.signup-form{
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  label {
+    width: 100%;
+    text-align: left;
+    color: #393939;
+  }
+  input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 15px;
+  }
+  input[type=submit] {
+    width: 50%;
+    color: #393939;
+    margin: 10px auto 0 auto;
+    background-color: #599374;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    font-size: 18px;
+  }
+
 }
